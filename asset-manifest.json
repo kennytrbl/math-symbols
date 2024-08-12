@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/math-symbols/static/css/main.456e2d7c.css",
-    "main.js": "/math-symbols/static/js/main.ffc1b14f.js",
+    "main.css": "/math-symbols/static/css/main.f4919f0d.css",
+    "main.js": "/math-symbols/static/js/main.e8ed953b.js",
     "static/js/453.839adb72.chunk.js": "/math-symbols/static/js/453.839adb72.chunk.js",
     "index.html": "/math-symbols/index.html",
-    "main.456e2d7c.css.map": "/math-symbols/static/css/main.456e2d7c.css.map",
-    "main.ffc1b14f.js.map": "/math-symbols/static/js/main.ffc1b14f.js.map",
+    "main.f4919f0d.css.map": "/math-symbols/static/css/main.f4919f0d.css.map",
+    "main.e8ed953b.js.map": "/math-symbols/static/js/main.e8ed953b.js.map",
     "453.839adb72.chunk.js.map": "/math-symbols/static/js/453.839adb72.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.456e2d7c.css",
-    "static/js/main.ffc1b14f.js"
+    "static/css/main.f4919f0d.css",
+    "static/js/main.e8ed953b.js"
   ]
 }
