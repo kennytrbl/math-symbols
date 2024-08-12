@@ -1,7 +1,9 @@
 :root {
+  background-color: #e2dad6;
   font-size: 1.5em;
   margin: auto;
   width: 80%;
+  padding-bottom: 2rem;
 }
 
 table {
@@ -11,7 +13,7 @@ table {
 
 table th,
 table td {
-  border: 1px solid #d1d5db;
+  border: 1px solid black;
   padding: 0.5rem;
   text-align: left;
 }
