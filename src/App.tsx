@@ -378,6 +378,13 @@ const App = () => {
           ))}
         </tbody>
       </table>
+      <p className="footer">
+        a creation by{" "}
+        <a href="https://kennytrbl.github.io/" target="_blank" rel="noreferrer">
+          Kenny Zhang
+        </a>
+        , © {new Date().getFullYear()}
+      </p>
     </div>
   );
 };
