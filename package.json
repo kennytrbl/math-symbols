@@ -1,6 +1,5 @@
 {
   "name": "math-symbols",
-  "homepage": "https://kennytrbl.github.io/math-symbols",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
