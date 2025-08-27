@@ -1,8 +1,17 @@
 import React from "react";
 import "./App.css";
-import MathSymbolRow from "./MathSymbolRow";
 
 const App = () => {
+  const [copiedIndex, setCopiedIndex] = React.useState<number | null>(null);
+
+  // Copy to clipboard handler
+  const handleRowClick = (latex: string, index: number) => {
+    if (navigator && navigator.clipboard) {
+      navigator.clipboard.writeText(latex.replace(/\$/g, "")); // Remove $ for plain LaTeX
+      setCopiedIndex(index);
+      setTimeout(() => setCopiedIndex(null), 1200);
+    }
+  };
   const symbols = [
     {
       symbol: "=",
@@ -364,26 +373,98 @@ const App = () => {
             <th>Name</th>
             <th>Description</th>
             <th>Example</th>
+            <th>LaTeX</th>
           </tr>
         </thead>
         <tbody>
-          {symbols.map((symbolData, index) => (
-            <MathSymbolRow
-              key={index}
-              symbol={symbolData.symbol}
-              name={symbolData.name}
-              description={symbolData.description}
-              example={symbolData.example}
-            />
-          ))}
+          {symbols.map((symbolData, index) => {
+            // Map symbol to LaTeX code
+            const latexMap: Record<string, string> = {
+              "=": "$=$",
+              "≠": "$\\neq$",
+              "≈": "$\\approx$",
+              ">": "$>$",
+              "<": "$<$",
+              "≥": "$\\geq$",
+              "≤": "$\\leq$",
+              "+": "$+$",
+              "-": "$-$",
+              "±": "$\\pm$",
+              "√": "$\\sqrt{}$",
+              "n√": "$\\sqrt[n]{}$",
+              "∠": "$\\angle$",
+              "∟": "$\\urcorner$",
+              "°": "$^\\circ$",
+              "⊥": "$\\perp$",
+              "∥": "$\\parallel$",
+              "≅": "$\\cong$",
+              "Δ": "$\\Delta$",
+              "π": "$\\pi$",
+              "≡": "$\\equiv$",
+              ":=": "$:=$",
+              "(f ∘ g)": "$(f \\circ g)$",
+              "∑": "$\\sum$",
+              "γ": "$\\gamma$",
+              "φ": "$\\varphi$",
+              "A^T": "$A^T$",
+              "A†": "$A^\\dagger$",
+              "A^*": "$A^*$",
+              "A^-1": "$A^{-1}$",
+              "⋂": "$\\cap$",
+              "⋃": "$\\cup$",
+              "μ": "$\\mu$",
+              "σ^2": "$\\sigma^2$",
+              "⊆": "$\\subseteq$",
+              "⊂": "$\\subset$",
+              "⊄": "$\\nsubseteq$",
+              "⊇": "$\\supseteq$",
+              "⊃": "$\\supset$",
+              "⊅": "$\\nsupseteq$",
+              "∈": "$\\in$",
+              "∉": "$\\notin$",
+              "∅": "$\\emptyset$",
+              "⊕": "$\\oplus$",
+              "⇒": "$\\Rightarrow$",
+              "⇔": "$\\Leftrightarrow$",
+              "∀": "$\\forall$",
+              "∃": "$\\exists$",
+              "∄": "$\\nexists$",
+              "∴": "$\\therefore$",
+              "ε": "$\\varepsilon$",
+              "∫": "$\\int$",
+              "α": "$\\alpha$",
+              "β": "$\\beta$",
+              "δ": "$\\delta$",
+              "θ": "$\\theta$",
+              "λ": "$\\lambda$",
+              "ψ": "$\\psi$",
+            };
+            const latex = latexMap[symbolData.symbol] || "";
+            return (
+              <tr
+                key={index}
+                style={{ cursor: "pointer", background: copiedIndex === index ? "#e0ffe0" : undefined }}
+                title="Click to copy LaTeX"
+                onClick={() => handleRowClick(latex, index)}
+              >
+                <td>{symbolData.symbol}</td>
+                <td>{symbolData.name}</td>
+                <td>{symbolData.description}</td>
+                <td>{symbolData.example}</td>
+                <td>
+                  <code>{latex}</code>
+                  {copiedIndex === index && <span style={{ color: "green", marginLeft: 8 }}> copied!</span>}
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
       <p className="footer">
         a creation by{" "}
-        <a href="https://kennytrbl.github.io/" target="_blank" rel="noreferrer">
+        <a href="https://kennyzhang.dev/" target="_blank" rel="noreferrer">
           Kenny Zhang
         </a>
-        , © {new Date().getFullYear()}
       </p>
     </div>
   );
